@@ -12,7 +12,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
-import {loadProductUser, loadSearchProductUser } from '../../store/actions/ProductActions'
+import {loadProductUser, loadSearchProductUser, orderProductUser } from '../../store/actions/ProductActions'
 
 
   class ViewProduct extends Component {
@@ -55,6 +55,15 @@ import {loadProductUser, loadSearchProductUser } from '../../store/actions/Produ
       this.props.history.push('/dashboard/edit-contact/'+id);
     }
 
+    OrderProduct = (e, id) => {
+      const confirmDialog  = window.confirm("are you sure you want to order this product?");
+      if(confirmDialog == true) {
+        this.props.orderProductUser(id);
+      } else {
+
+      }
+    }
+
     render() {
 
       const {loadProducts} = this.props;   
@@ -80,7 +89,7 @@ import {loadProductUser, loadSearchProductUser } from '../../store/actions/Produ
                 <TableCell align="right">Product Image</TableCell>
                 <TableCell align="right">Price</TableCell>
                 <TableCell align="right">Quantity</TableCell>            
-                <TableCell align="right" >edit</TableCell>
+                <TableCell align="right" >Manage</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -104,8 +113,10 @@ import {loadProductUser, loadSearchProductUser } from '../../store/actions/Produ
                     variant="contained"
                     color="primary"
                     id={row.id}
-                    onClick={(e) => this.loadEditpage(e, row.id)}
-                  />
+                    onClick = {(e)=>this.OrderProduct(e, row.id)}
+                  >
+                    Order Now
+                  </Button>
                 </TableCell>
               </TableRow>
             ))
@@ -140,6 +151,7 @@ const mapDispatchToProps = (dispatch) =>{
     return{
         loadProductUser: (page) => dispatch(loadProductUser(page)),
         loadSearchProductUser :(search_content,page) => dispatch(loadSearchProductUser(search_content, page)),
+        orderProductUser: (id) => dispatch(orderProductUser(id))
     }   
 }
 

@@ -14,7 +14,8 @@ postData = async(item ,added_url) =>{
 
     }
 
-    return fetch(this.url+"/"+added_url, requestOptions).then(
+
+    return fetch("api/"+added_url, requestOptions).then(
         response=>response.json());
 }
 
@@ -29,7 +30,7 @@ getData = async(added_url) =>{
     }
     }
     
-    return fetch(this.url+"/"+added_url, requestOptions).then(
+    return fetch("api/"+added_url, requestOptions).then(
         response=>response.json());
 }
 

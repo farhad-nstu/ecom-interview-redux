@@ -95,26 +95,23 @@ return http.postData(data,editDataUrl).then((data)=>{
 }
 }
 
-
-export const deleteContact = (id) =>
+export const orderProduct = (id) =>
 {
-    const data = {};
+  const data = {};
 
-   if(id=="")
-   {
+  if(id == "") {
 
-   }else{
-       const http = new HttpService();
-       let deleteUrl = "user/contact/delete/"+id;
-       return http.postData(data,deleteUrl).then((data)=>{
-        console.log(data)
-       console.log(JSON.stringify(data));
-       return data;
-   }).catch((error)=> {console.log(error)
-       return error; 
-        });
-   }
-   }
+  } else {
+    const http = new HttpService();
+    let orderUrl = "user/product/order/"+id;
+
+    return http.getData(orderUrl).then((data) => {
+      return data;
+    }).catch((error) => {
+      return error; 
+    });
+  }
+}
 
 
 

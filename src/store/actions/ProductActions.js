@@ -4,7 +4,7 @@ import {
   loadSearchProducts,
   loadSingleData
   ,editSingleData,
-  deleteContact
+  orderProduct
 } from '../services/ProductService';
 
 export const addContactUser = (credentials) =>{
@@ -22,8 +22,6 @@ export const addContactUser = (credentials) =>{
         )
     }
 } 
-
-
 
 export const loadProductUser = (page) => {
   return (dispatch) => {
@@ -49,8 +47,6 @@ export const loadSearchProductUser = (search_content, page) => {
   }   
 }
 
-
-
 export const loadSingleDataUser= (id) =>{
     
     return (dispatch) =>{
@@ -65,7 +61,6 @@ export const loadSingleDataUser= (id) =>{
         )
     }
 }
-
 
 export const editContactUser = (credentials,id) =>{
     return (dispatch) =>{
@@ -83,17 +78,13 @@ export const editContactUser = (credentials,id) =>{
     }
 }
 
-export const deleteContactUser = (id) =>{
-    return (dispatch) =>{
-      deleteContact(id).then((res)=>{
-            console.log(res);
-            res.id = id;
-                dispatch({type:'DATA_DELETE_SUCCESSFULLY',res})
-        },
-        error=>{
-            dispatch({type:'DATA_DELETE_ERROR',error});
-        }
-        
-        )
-    }
+export const orderProductUser = (id) => {
+  return (dispatch) => {
+    orderProduct(id).then((res) => {
+        dispatch({type:'ORDERED_SUCCESSFULLY', res})
+    },
+    error => {
+      dispatch({type:'ORDER_ERROR', error});
+    })
+  }
 }

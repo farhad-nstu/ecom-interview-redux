@@ -79,37 +79,36 @@ const ProductReducer = (state=initState, action) => {
                               ...state,
                               productResponse:action.error
                           }
-                          case 'DATA_DELETE_SUCCESSFULLY':
-                          let { loadProducts } = state;
-                          let data = loadProducts.data.data.filter(items=>items.id !==action.res.id);
-                          console.log(data);
-                          loadProducts.data.data = [];
-                          data.map((mappingData)=>{
-                              loadProducts.data.data.push({
-                                  "id":mappingData.id,
-                                  "firstname":mappingData.firstname,
-                                  "lastname":mappingData.lastname,
-                                  "email":mappingData.email,
-                                  "phonenumber":mappingData.phonenumber,
-                                  "image_file":mappingData.image_file,
-                              })
-                          })
-                          return{
-                              ...state,
-                              loadProducts:{...state.loadProducts,loadProducts}
-                          }
-                              
-                  
-                             case 'DATA_DELETE_ERROR':
-                          return {
-                              ...state,
-                              productResponse:action.error
-                          }
-      default:
-              return state
-  }
-      
-    
+
+    case 'ORDERED_SUCCESSFULLY':
+      let { loadProducts } = state;
+      let data = loadProducts.data.data;
+      console.log(data);
+      loadProducts.data.data = [];
+      data.map((mappingData) => {
+        loadProducts.data.data.push({
+          "id": mappingData.id,
+          "name": mappingData.name,
+          "picture": mappingData.picture,
+          "price": mappingData.price,
+          "quantity": mappingData.quantity,
+        })
+      })
+      return{
+        ...state,
+        loadProducts: {...state.loadProducts, loadProducts}
+      }
+                                              
+    case 'ORDER_ERROR':
+      return {
+        ...state,
+        productResponse: action.error
+      }
+
+    default:
+      return state
+
+  }    
 }
 
 export default ProductReducer;
