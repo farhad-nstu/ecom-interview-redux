@@ -19,46 +19,42 @@ export const addNewContact = (credentials) =>{
 
 //contact/get-all/{token}/{pagination?}
 //this function loads paginated contacts
-export const loadContacts = (page) =>{
-    let token = localStorage.getItem('user');
-    let pager = 2;
-    let contactsDataUrl ; 
-    if(page==""){
-    contactsDataUrl = "user/contact/get-all/"+token+"/"+pager; 
-    }else{
-        contactsDataUrl = "user/contact/get-all/"+token+"/"+pager+"?page="+page;
-    }
-    
-    const http = new HttpService();
-    return http.getData(contactsDataUrl).then((data)=>{
-        console.log(data);
-        return data
-    }).catch((error)=>{
-        console.log(error)
-    })
-    
+export const loadProducts = (page) => {
+  let token = localStorage.getItem('user');
+  let pager = 2;
+  let productsDataUrl ; 
+  if(page == "") {
+    productsDataUrl = "user/product/get-all/"+token+"/"+pager; 
+  } else {
+    productsDataUrl = "user/product/get-all/"+token+"/"+pager+"?page="+page;
+  }
+  
+  const http = new HttpService();
+  return http.getData(productsDataUrl).then((data) => {
+    return data
+  }).catch((error)=>{
+    return error
+  })  
 }
 
 
-export const loadSearchContacts = (search_content,page) =>{
-    let token = localStorage.getItem('user');
-    let pager = 2;
-    let contactsDataUrl ; 
-    if(page==""){
-    contactsDataUrl = "user/contact/search/"+search_content+"/"+token+"/"+pager; 
-    }else{
-        contactsDataUrl = "user/contact/search/"+search_content+"/"+token+"/"+pager+"?page="+page;
-    }
-    
-    const http = new HttpService();
-    return http.getData(contactsDataUrl).then((data)=>{
-        console.log(data);
-        return data
-    }).catch((error)=>{
-        console.log(error)
-        return error
-    })
-    
+export const loadSearchProducts = (search_content, page) => {
+  let token = localStorage.getItem('user');
+  let pager = 2;
+  let productsDataUrl; 
+  if(page == "") {
+    productsDataUrl = "user/product/search/"+search_content+"/"+token+"/"+pager; 
+  } else {
+    productsDataUrl = "user/product/search/"+search_content+"/"+token+"/"+pager+"?page="+page;
+  }
+  
+  const http = new HttpService();
+  return http.getData(productsDataUrl).then((data) => {
+    return data
+  }).catch((error) => {
+    console.log(error)
+    return error
+  })  
 }
 
 export const loadSingleData =(id) =>

@@ -6,7 +6,7 @@ import  useStyles from '../layout/dashboard/GeneralJSXstyling'
 import Sidebar from '../layout/dashboard/Sidebar'
 import '../layout/dashboard/dashboard.css'
 import {Switch,Route} from 'react-router-dom'
-import ViewContact from '../components/dashboard/ViewContact'
+import ViewProduct from '../components/dashboard/ViewProduct'
 import AddContact from '../components/dashboard/AddContact'
 import EditContact from '../components/dashboard/EditContact'
 import {useDispatch} from 'react-redux';
@@ -35,8 +35,8 @@ const Dashboard = (props)=>{
         <div className={classes.toolbar} />
         
         <Switch>
-    <Route exact path={props.match.path} component={ViewContact} />
-    <Route exact path={`${props.match.path}/view-contacts`}  component={ViewContact} />
+    <Route exact path={props.match.path} component={ViewProduct} />
+    <Route exact path={`${props.match.path}/view-products`}  component={ViewProduct} />
     <Route exact path={`${props.match.path}/add-contacts`} component={AddContact} />
     <Route exact path={`${props.match.path}/edit-contact/:id`}  component={EditContact} />
     <Route exact path={`${props.match.path}/add-category`} component={AddCategory} />

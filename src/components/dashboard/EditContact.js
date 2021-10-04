@@ -3,7 +3,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
 import DefaultImg from '../../img/default-img.png'
-import {loadSingleDataUser,editContactUser} from '../../store/actions/ContactActions'
+import {loadSingleDataUser,editContactUser} from '../../store/actions/ProductActions'
 
 class EditContact extends Component {
     constructor(props)

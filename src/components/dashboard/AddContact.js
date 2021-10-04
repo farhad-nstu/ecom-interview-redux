@@ -5,7 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux'
-import  { addContactUser } from  '../../store/actions/ContactActions'
+import  { addContactUser } from  '../../store/actions/ProductActions'
 
 
 

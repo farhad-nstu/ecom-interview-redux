@@ -1,11 +1,11 @@
 import {
-    addNewContact,
-    loadContacts,
-    loadSearchContacts,
-    loadSingleData
-    ,editSingleData,
-    deleteContact
-    } from '../services/ContactService'
+  addNewContact,
+  loadProducts,
+  loadSearchProducts,
+  loadSingleData
+  ,editSingleData,
+  deleteContact
+} from '../services/ProductService';
 
 export const addContactUser = (credentials) =>{
     return (dispatch) =>{
@@ -25,34 +25,28 @@ export const addContactUser = (credentials) =>{
 
 
 
-export const loadContactUser = (page) =>{
-    return (dispatch) =>{
-        loadContacts(page).then((res)=>{
-            console.log(res)
-            dispatch({type:'LOAD_CONTACTS',res});
-        },
-        error=>{
-            dispatch({type:'FETCH_CONTACT_ERROR',error})
-            console.log(error)
-        }    
-        )
-    }
+export const loadProductUser = (page) => {
+  return (dispatch) => {
+    loadProducts(page).then((res) => {
+      dispatch({type:'LOAD_PRODUCTS', res});
+    },
+    error => {
+      dispatch({type:'FETCH_PRODUCT_ERROR',error})
+    })
+  }
 }
 
-
-export const loadSearchContactUser = (search_content,page) =>{
- 
-    return (dispatch) =>{
-        loadSearchContacts(search_content,page).then((res)=>{
-            console.log(res)
-            dispatch({type:'LOAD_CONTACTS_SEARCH',res});
-        },
-        error=>{
-            dispatch({type:'FETCH_CONTACT_ERROR',error})
-            console.log(error)
-        }    
-        )
-    }   
+export const loadSearchProductUser = (search_content, page) => {
+  return (dispatch) => {
+    loadSearchProducts(search_content, page).then((res) => {
+      console.log(res)
+      dispatch({type:'LOAD_PRODUCTS_SEARCH', res});
+    },
+    error=>{
+      dispatch({type:'FETCH_PRODUCT_ERROR',error})
+      console.log(error)
+    })
+  }   
 }
 
 

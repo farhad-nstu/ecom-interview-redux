@@ -1,11 +1,11 @@
 import {combineReducers} from 'redux'
 import AuthReducer from './AuthReducer'
-import ContactReducer from './ContactReducer'
+import ProductReducer from './ProductReducer'
 import CategoryReducer from './CategoryReducer'
 
 const RootReducer = combineReducers({
     auth:AuthReducer,
-    contact:ContactReducer,
+    product:ProductReducer,
     category: CategoryReducer
 })
 
