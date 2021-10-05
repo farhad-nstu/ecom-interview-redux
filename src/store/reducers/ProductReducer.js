@@ -2,11 +2,11 @@ const initState = {
   productResponse:null,
   contactMessage:null,
   loadProducts:null,
-  loadSingleContacts:null
+  loadSingleProduct:null
 };
  
 
-const ProductReducer = (state=initState, action) => {
+const ProductReducer = (state = initState, action) => {
   switch(action.type){
 
     case 'RESTART_ADD_UPDATE_RESPONSE':
@@ -56,17 +56,18 @@ const ProductReducer = (state=initState, action) => {
         ...state,
         loadProducts:action.error
       }
-              case 'LOAD_SINGLE_DATA':
-                  console.log(action.res)
-                  return{
-                      ...state,
-                      loadSingleContacts:action.res
-                  }
-                      case 'FETCH_SINGLE_DATA_ERROR':
-                          return{
-                              ...state,
-                              loadSingleContacts:action.error
-                          }
+
+    case 'LOAD_SINGLE_DATA':
+      return{
+        ...state,
+        loadSingleProduct:action.res
+      }
+
+    case 'FETCH_SINGLE_DATA_ERROR':
+      return{
+        ...state,
+        loadSingleProduct:action.error
+      }
                           case 'UPDATE_CONTACT_SUCCESS':
                               console.log(action);
                               return{

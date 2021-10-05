@@ -47,19 +47,17 @@ export const loadSearchProductUser = (search_content, page) => {
   }   
 }
 
-export const loadSingleDataUser= (id) =>{
-    
-    return (dispatch) =>{
-        loadSingleData(id).then((res)=>{
-            console.log(res)
-            dispatch({type:'LOAD_SINGLE_DATA',res});
-        },
-        error=>{
-            dispatch({type:'FETCH_SINGLE_DATA_ERROR',error})
-            console.log(error)
-        }    
-        )
-    }
+export const loadSingleDataUser = (id) => {  
+  return (dispatch) => {
+    loadSingleData(id).then((res) => {
+      console.log(res)
+      dispatch({type:'LOAD_SINGLE_DATA', res});
+    },
+    error => {
+      dispatch({type:'FETCH_SINGLE_DATA_ERROR', error})
+      console.log(error)
+    })
+  }
 }
 
 export const editContactUser = (credentials,id) =>{
@@ -78,10 +76,14 @@ export const editContactUser = (credentials,id) =>{
     }
 }
 
-export const orderProductUser = (id) => {
+export const orderProductUser = (credentials, id) => {
   return (dispatch) => {
-    orderProduct(id).then((res) => {
-        dispatch({type:'ORDERED_SUCCESSFULLY', res})
+    dispatch({type:'RESTART_ADD_UPDATE_RESPONSE'});
+    dispatch({type:'LOADING'});
+
+    orderProduct(credentials, id).then((res) => {
+      console.log(res);
+      dispatch({type:'ORDERED_SUCCESSFULLY', res})
     },
     error => {
       dispatch({type:'ORDER_ERROR', error});

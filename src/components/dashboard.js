@@ -8,7 +8,7 @@ import '../layout/dashboard/dashboard.css'
 import {Switch,Route} from 'react-router-dom'
 import ViewProduct from '../components/dashboard/ViewProduct'
 import AddContact from '../components/dashboard/AddContact'
-import EditContact from '../components/dashboard/EditContact'
+import ProductDetails from '../components/dashboard/ProductDetails'
 import {useDispatch} from 'react-redux';
 import {resetAuthResponsePerComponent} from '../store/actions/AuthAction';
 import AddCategory from '../components/dashboard/category/AddCategory';
@@ -38,7 +38,7 @@ const Dashboard = (props)=>{
     <Route exact path={props.match.path} component={ViewProduct} />
     <Route exact path={`${props.match.path}/view-products`}  component={ViewProduct} />
     <Route exact path={`${props.match.path}/add-contacts`} component={AddContact} />
-    <Route exact path={`${props.match.path}/edit-contact/:id`}  component={EditContact} />
+    <Route exact path={`${props.match.path}/product-details/:id`}  component={ProductDetails} />
     <Route exact path={`${props.match.path}/add-category`} component={AddCategory} />
     <Route exact path={`${props.match.path}/view-category`} component={ViewCategory} />
     <Route exact path={`${props.match.path}/edit-category/:id`} component={EditCategory} />

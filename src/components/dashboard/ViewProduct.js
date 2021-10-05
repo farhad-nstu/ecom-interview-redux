@@ -51,8 +51,8 @@ import {loadProductUser, loadSearchProductUser, orderProductUser } from '../../s
       }     
     }
 
-    loadEditpage = (e,id) => {
-      this.props.history.push('/dashboard/edit-contact/'+id);
+    loadDetailsPage = (e, id) => {
+      this.props.history.push('/dashboard/product-details/'+id);
     }
 
     OrderProduct = (e, id) => {
@@ -107,6 +107,17 @@ import {loadProductUser, loadSearchProductUser, orderProductUser } from '../../s
                 <TableCell align="right">{row.price}</TableCell>
 
                 <TableCell align="right">{row.quantity}</TableCell>
+
+                <TableCell align="right">
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    id={row.id}
+                    onClick={(e )=> this.loadDetailsPage(e, row.id)}
+                  >
+                    Edit
+                  </Button>
+                </TableCell>
               
                 <TableCell align="right">
                   <Button

@@ -57,25 +57,21 @@ export const loadSearchProducts = (search_content, page) => {
   })  
 }
 
-export const loadSingleData =(id) =>
-{
-if(id==""){
+export const loadSingleData = (id) => {
+  if(id == "") {
 
-}else{
-    let getDataUrl = "user/contact/get-single/"+id;
+  } else {
+    let getDataUrl = "user/product-details/"+id;
     const http = new HttpService();
-    return http.getData(getDataUrl).then((data)=>{
-        console.log(data);
-        return data
-    }).catch((error)=>{
-        console.log(error);
-        return error
+    return http.getData(getDataUrl).then((data) => {
+      console.log(data);
+      return data
+    }).catch((error) => {
+      console.log(error);
+      return error
     })
+  }
 }
-
-}
-
-
 
 export const editSingleData = (data,id) =>
 {
@@ -95,22 +91,26 @@ return http.postData(data,editDataUrl).then((data)=>{
 }
 }
 
-export const orderProduct = (id) =>
-{
-  const data = {};
+export const orderProduct = (data, id) => {
+
+  let token = localStorage.getItem('user');
 
   if(id == "") {
 
   } else {
     const http = new HttpService();
-    let orderUrl = "user/product/order/"+id;
+    let orderUrl = "user/product/order/"+id+"/"+token;
 
-    return http.getData(orderUrl).then((data) => {
+    return http.postData(data, orderUrl).then((data) => {
+      console.log(data)
+      console.log(JSON.stringify(data));
       return data;
     }).catch((error) => {
+      console.log(error)
       return error; 
     });
   }
+
 }
 
 
