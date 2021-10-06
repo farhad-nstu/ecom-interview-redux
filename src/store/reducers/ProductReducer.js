@@ -82,22 +82,9 @@ const ProductReducer = (state = initState, action) => {
                           }
 
     case 'ORDERED_SUCCESSFULLY':
-      let { loadProducts } = state;
-      let data = loadProducts.data.data;
-      console.log(data);
-      loadProducts.data.data = [];
-      data.map((mappingData) => {
-        loadProducts.data.data.push({
-          "id": mappingData.id,
-          "name": mappingData.name,
-          "picture": mappingData.picture,
-          "price": mappingData.price,
-          "quantity": mappingData.quantity,
-        })
-      })
       return{
         ...state,
-        loadProducts: {...state.loadProducts, loadProducts}
+        productResponse: action.res.message
       }
                                               
     case 'ORDER_ERROR':

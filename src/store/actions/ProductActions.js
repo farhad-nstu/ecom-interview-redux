@@ -29,7 +29,7 @@ export const loadProductUser = (page) => {
       dispatch({type:'LOAD_PRODUCTS', res});
     },
     error => {
-      dispatch({type:'FETCH_PRODUCT_ERROR',error})
+      dispatch({type:'FETCH_PRODUCT_ERROR', error})
     })
   }
 }
@@ -37,12 +37,10 @@ export const loadProductUser = (page) => {
 export const loadSearchProductUser = (search_content, page) => {
   return (dispatch) => {
     loadSearchProducts(search_content, page).then((res) => {
-      console.log(res)
       dispatch({type:'LOAD_PRODUCTS_SEARCH', res});
     },
     error=>{
       dispatch({type:'FETCH_PRODUCT_ERROR',error})
-      console.log(error)
     })
   }   
 }
@@ -50,12 +48,10 @@ export const loadSearchProductUser = (search_content, page) => {
 export const loadSingleDataUser = (id) => {  
   return (dispatch) => {
     loadSingleData(id).then((res) => {
-      console.log(res)
       dispatch({type:'LOAD_SINGLE_DATA', res});
     },
     error => {
       dispatch({type:'FETCH_SINGLE_DATA_ERROR', error})
-      console.log(error)
     })
   }
 }
@@ -82,7 +78,6 @@ export const orderProductUser = (credentials, id) => {
     dispatch({type:'LOADING'});
 
     orderProduct(credentials, id).then((res) => {
-      console.log(res);
       dispatch({type:'ORDERED_SUCCESSFULLY', res})
     },
     error => {

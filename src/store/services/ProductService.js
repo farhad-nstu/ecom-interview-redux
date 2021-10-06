@@ -52,7 +52,6 @@ export const loadSearchProducts = (search_content, page) => {
   return http.getData(productsDataUrl).then((data) => {
     return data
   }).catch((error) => {
-    console.log(error)
     return error
   })  
 }
@@ -64,10 +63,8 @@ export const loadSingleData = (id) => {
     let getDataUrl = "user/product-details/"+id;
     const http = new HttpService();
     return http.getData(getDataUrl).then((data) => {
-      console.log(data);
       return data
     }).catch((error) => {
-      console.log(error);
       return error
     })
   }
@@ -82,8 +79,6 @@ export const editSingleData = (data,id) =>
       const http = new HttpService();
 let editDataUrl = "user/contact/update/"+id;
 return http.postData(data,editDataUrl).then((data)=>{
-     console.log(data)
-    console.log(JSON.stringify(data));
     return data;
 }).catch((error)=> {console.log(error)
     return error; 
@@ -102,11 +97,8 @@ export const orderProduct = (data, id) => {
     let orderUrl = "user/product/order/"+id+"/"+token;
 
     return http.postData(data, orderUrl).then((data) => {
-      console.log(data)
-      console.log(JSON.stringify(data));
       return data;
     }).catch((error) => {
-      console.log(error)
       return error; 
     });
   }

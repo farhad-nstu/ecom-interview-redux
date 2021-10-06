@@ -115,17 +115,6 @@ import {loadProductUser, loadSearchProductUser, orderProductUser } from '../../s
                     id={row.id}
                     onClick={(e )=> this.loadDetailsPage(e, row.id)}
                   >
-                    Edit
-                  </Button>
-                </TableCell>
-              
-                <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    id={row.id}
-                    onClick = {(e)=>this.OrderProduct(e, row.id)}
-                  >
                     Order Now
                   </Button>
                 </TableCell>
