@@ -12,7 +12,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
-import {loadOrderUser, loadSearchProductUser, orderProductUser } from '../../store/actions/ProductActions'
+import {loadOrderUser, loadSearchOrderUser, orderProductUser } from '../../store/actions/OrderActions'
 
 
   class ViewOrders extends Component {
@@ -26,14 +26,14 @@ import {loadOrderUser, loadSearchProductUser, orderProductUser } from '../../sto
     }
 
     componentDidMount = () => {
-     const page = "";
-     this.props.loadOrderUser(page);
+      const page = "";
+      this.props.loadOrderUser(page);
     }
 
     handleKeyUp = async (e) => {
       await  this.setState({
-          [e.target.id] : e.target.value
-        })
+        [e.target.id] : e.target.value
+      })
 
       if(this.state.search_content == "") {
 
@@ -51,8 +51,8 @@ import {loadOrderUser, loadSearchProductUser, orderProductUser } from '../../sto
       }     
     }
 
-    loadDetailsPage = (e, id) => {
-      this.props.history.push('/dashboard/product-details/'+id);
+    loadEditPage = (e, id) => {
+      this.props.history.push('/dashboard/edit-order/'+id);
     }
 
     render() {
@@ -76,48 +76,45 @@ import {loadOrderUser, loadSearchProductUser, orderProductUser } from '../../sto
           <Table aria-label="simple table">
             <TableHead>
               <TableRow>
-                <TableCell>Title</TableCell>
-                <TableCell align="right">Product Image</TableCell>
-                <TableCell align="right">Quantity</TableCell>         
-                <TableCell align="right">Order Date</TableCell>
-                <TableCell align="right">Shipping Address</TableCell>   
+                <TableCell>Title</TableCell>      
+                <TableCell align="right">Date</TableCell>
+                <TableCell align="right">Shipp Address</TableCell>   
                 <TableCell align="right">Status</TableCell>   
                 <TableCell align="right">Price</TableCell>
-                <TableCell align="right">Shipping Cost</TableCell>
+                <TableCell align="right">Quantity</TableCell>  
+                <TableCell align="right">Shipp Cost</TableCell>
                 <TableCell align="right">Total Price</TableCell>
                 <TableCell align="right" >Manage</TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
-              {loadProducts && loadProducts.hasOwnProperty('data')? loadProducts.data.data.map(row => (
+              {loadOrders && loadOrders.hasOwnProperty('data')? loadOrders.data.data.map(row => (
                 <TableRow key={row.id }>
 
                 <TableCell component="th" scope="row">
-                  {row.name}
+                  {row.name} <br></br>
+                  <img src={loadOrders.file_directory+"/"+row.picture} width={50} height={50} />
                 </TableCell>
 
-                <TableCell align="right">
-                  <img src={loadProducts.file_directory+"/"+row.picture} width={50} height={50} />
-                </TableCell>
-
-                <TableCell align="right">{row.quantity}</TableCell>
                 <TableCell align="right">{row.order_date}</TableCell>
                 <TableCell align="right">{row.shipping_address}</TableCell>
                 <TableCell align="right">{row.order_status}</TableCell>
                 <TableCell align="right">{row.price}</TableCell>
+                <TableCell align="right">{row.product_quantity}</TableCell>
                 <TableCell align="right">{row.shipping_cost}</TableCell>
                 <TableCell align="right">{row.net_price}</TableCell>
 
-
                 <TableCell align="right">
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    id={row.id}
-                    onClick={(e )=> this.loadDetailsPage(e, row.id)}
-                  >
-                    Order Now
-                  </Button>
+                  {row.order_status && (row.order_status == 'approved' || row.order_status == 'rejected') ? null :
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      id={row.id}
+                      onClick={(e )=> this.loadEditPage(e, row.id)}
+                    >
+                      Edit
+                    </Button>
+                  }
                 </TableCell>
               </TableRow>
             ))
@@ -127,7 +124,7 @@ import {loadOrderUser, loadSearchProductUser, orderProductUser } from '../../sto
           </Table>
 
           {loadOrders? 
-            <Pagination defaultPageSize={10} current={loadOrders.data.current_page}
+            <Pagination defaultPageSize={2} current={loadOrders.data.current_page}
               className="pagination-restyle"
               total={loadOrders.data.total} 
               onChange={this.onChange} 
@@ -144,14 +141,14 @@ import {loadOrderUser, loadSearchProductUser, orderProductUser } from '../../sto
 
 const mapStateToProps = (state)=> {
   return{
-    loadOrders: state.product.loadOrders
+    loadOrders: state.order.loadOrders
   }
 }
 
 const mapDispatchToProps = (dispatch) =>{
   return{
     loadOrderUser: (page) => dispatch(loadOrderUser(page)),
-    loadSearchOrderUser :(search_content,page) => dispatch(loadSearchOrderUser(search_content, page)),
+    loadSearchOrderUser :(search_content, page) => dispatch(loadSearchOrderUser(search_content, page)),
     orderProductUser: (id) => dispatch(orderProductUser(id))
   }   
 }
