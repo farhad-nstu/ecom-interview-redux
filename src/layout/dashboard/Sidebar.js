@@ -45,6 +45,10 @@ const Sidebar = (props) => {
         props.props.history.push('/dashboard/view-products');
         break;
 
+      case  'view orders':
+        props.props.history.push('/dashboard/view-orders');
+        break;
+
       case  'add category':
         props.props.history.push('/dashboard/add-category');
         break;
@@ -63,7 +67,7 @@ const Sidebar = (props) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {['add contacts','view products', 'add category', 'view category'].map((text, index) => (
+        {['add contacts','view products', 'view orders', 'add category', 'view category'].map((text, index) => (
           <ListItem button key={text}   onClick={(ev)=>loadPage(ev,text)} >
             <ListItemText primary={text} />
           </ListItem>
