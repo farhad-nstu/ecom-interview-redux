@@ -77,7 +77,7 @@ import {loadEditHistoryUser } from '../../store/actions/OrderActions'
           </Table>
 
           {loadEditOrders? 
-            <Pagination defaultPageSize={2} current={loadEditOrders.data.current_page}
+            <Pagination defaultPageSize={12} current={loadEditOrders.data.current_page}
               className="pagination-restyle"
               total={loadEditOrders.data.total} 
               onChange={this.onChange} 

@@ -3,7 +3,8 @@ import {
   loadSearchProducts,
   loadSingleData,
   editSingleData,
-  orderProduct
+  orderProduct,
+  loadFilterProducts
 } from '../services/ProductService';
 
 export const loadProductUser = (page) => {
@@ -21,6 +22,17 @@ export const loadSearchProductUser = (search_content, page) => {
   return (dispatch) => {
     loadSearchProducts(search_content, page).then((res) => {
       dispatch({type:'LOAD_PRODUCTS_SEARCH', res});
+    },
+    error=>{
+      dispatch({type:'FETCH_PRODUCT_ERROR',error})
+    })
+  }   
+}
+
+export const loadFilterProductUser = (filter_product, page) => {
+  return (dispatch) => {
+    loadFilterProducts(filter_product, page).then((res) => {
+      dispatch({type:'LOAD_FILTER_PRODUCTS', res});
     },
     error=>{
       dispatch({type:'FETCH_PRODUCT_ERROR',error})

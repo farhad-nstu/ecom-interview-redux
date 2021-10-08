@@ -163,7 +163,7 @@ import {loadOrderUser, loadSearchOrderUser, deleteOrderUser } from '../../store/
           </Table>
 
           {loadOrders? 
-            <Pagination defaultPageSize={2} current={loadOrders.data.current_page}
+            <Pagination defaultPageSize={12} current={loadOrders.data.current_page}
               className="pagination-restyle"
               total={loadOrders.data.total} 
               onChange={this.onChange} 

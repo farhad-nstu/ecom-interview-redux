@@ -2,7 +2,7 @@ import HttpService from './HttpService';
  
 export const loadOrders = (page) => {
   let token = localStorage.getItem('user');
-  let pager = 2;
+  let pager = 12;
   let ordersDataUrl; 
   if(page == "") {
     ordersDataUrl = "user/order/get-all/"+token+"/"+pager; 
@@ -21,7 +21,7 @@ export const loadOrders = (page) => {
 
 export const loadSearchOrders = (search_content, page) => {
   let token = localStorage.getItem('user');
-  let pager = 2;
+  let pager = 12;
   let ordersDataUrl; 
   if(page == "") {
     ordersDataUrl = "user/order/search/"+search_content+"/"+token+"/"+pager; 
@@ -86,7 +86,7 @@ export const orderProduct = (data, id) => {
 
 export const loadEditOrders = (page, id) => {
   // let token = localStorage.getItem('user');
-  let pager = 2;
+  let pager = 12;
   let ordersDataUrl; 
   if(page == "") {
     ordersDataUrl = "user/edit-orders/"+id+"/"+pager; 

@@ -50,6 +50,12 @@ const ProductReducer = (state = initState, action) => {
         loadProducts:action.res
       }
 
+    case 'LOAD_FILTER_PRODUCTS':
+      return{
+        ...state,
+        loadProducts:action.res
+      }
+
     case 'FETCH_PRODUCT_ERROR':
       return{
         ...state,
