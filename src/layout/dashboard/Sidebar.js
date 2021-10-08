@@ -36,10 +36,6 @@ const Sidebar = (props) => {
 
   const loadPage = (ev,text) =>{
     switch (text) {
-      case  'add contacts':
-        console.log(props)
-        props.props.history.push('/dashboard/add-contacts');
-        break;
 
       case  'view products':
         props.props.history.push('/dashboard/view-products');
@@ -47,14 +43,6 @@ const Sidebar = (props) => {
 
       case  'view orders':
         props.props.history.push('/dashboard/view-orders');
-        break;
-
-      case  'add category':
-        props.props.history.push('/dashboard/add-category');
-        break;
-
-      case  'view category':
-        props.props.history.push('/dashboard/view-category');
         break;
   
       default:
@@ -67,7 +55,7 @@ const Sidebar = (props) => {
       <div className={classes.toolbar} />
       <Divider />
       <List>
-        {['add contacts','view products', 'view orders', 'add category', 'view category'].map((text, index) => (
+        {['view products', 'view orders'].map((text, index) => (
           <ListItem button key={text}   onClick={(ev)=>loadPage(ev,text)} >
             <ListItemText primary={text} />
           </ListItem>

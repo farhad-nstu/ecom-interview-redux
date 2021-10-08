@@ -94,7 +94,7 @@ import {loadProductUser, loadSearchProductUser, orderProductUser } from '../../s
                     <img src={loadProducts.file_directory+"/"+row.picture} width={200} height={180} />
                     <br></br>
                     <p>BDT {row.price}</p>
-                    <br></br>
+                    
                     <h6 style={{ fontWeight: "bold" }}>{row.name}</h6>
 
                   </a>

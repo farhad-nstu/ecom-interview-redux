@@ -68,6 +68,44 @@ const OrderReducer = (state = initState, action) => {
         orderResponse:action.error
       }
 
+    case 'LOAD_EDIT_ORDERS':
+      return {
+        ...state,
+        loadEditOrders:action.res
+      }
+
+    case 'FETCH_EDIT_ORDER_ERROR':
+      return{
+        ...state,
+        loadEditOrders:action.error
+      }
+
+    case 'ORDER_DELETE_SUCCESSFULLY':
+      let { loadOrders } = state;
+      let data = loadOrders.data.data.filter(items => items.id !== action.res.id);
+      loadOrders.data.data = [];
+      data.map((mappingData) => {
+        loadOrders.data.data.push({
+          "id": mappingData.id,
+          "name": mappingData.name,
+          "price": mappingData.product_price, 
+          "picture": mappingData.picture,
+          "product_quantity": mappingData.product_quantity,
+          "shipping_address": mappingData.shipping_address,
+          "file_directory": mappingData.file_directory,
+        })
+      })
+      return{
+        ...state,
+        loadOrders: {...state.loadOrders, loadOrders}
+      }                              
+                    
+    case 'ORDER_DELETE_ERROR':
+      return {
+        ...state,
+        orderResponse:action.error
+      }
+
     default:
       return state
 

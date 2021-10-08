@@ -12,7 +12,7 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux'
-import {loadOrderUser, loadSearchOrderUser, orderProductUser } from '../../store/actions/OrderActions'
+import {loadOrderUser, loadSearchOrderUser, deleteOrderUser } from '../../store/actions/OrderActions'
 
 
   class ViewOrders extends Component {
@@ -53,6 +53,19 @@ import {loadOrderUser, loadSearchOrderUser, orderProductUser } from '../../store
 
     loadEditPage = (e, id) => {
       this.props.history.push('/dashboard/edit-order/'+id);
+    }
+
+    loadEditHistoryPage = (e, id) => {
+      this.props.history.push('/dashboard/edit-history/'+id);
+    }
+
+    deleteOrder = (e, id) => {
+      const confirmDialog  = window.confirm("Are you sure you want to delete this order?");
+      if(confirmDialog == true) {
+        this.props.deleteOrderUser(id);
+      } else {
+
+      }
     }
 
     render() {
@@ -99,7 +112,7 @@ import {loadOrderUser, loadSearchOrderUser, orderProductUser } from '../../store
                 <TableCell align="right">{row.order_date}</TableCell>
                 <TableCell align="right">{row.shipping_address}</TableCell>
                 <TableCell align="right">{row.order_status}</TableCell>
-                <TableCell align="right">{row.price}</TableCell>
+                <TableCell align="right">{row.product_price}</TableCell>
                 <TableCell align="right">{row.product_quantity}</TableCell>
                 <TableCell align="right">{row.shipping_cost}</TableCell>
                 <TableCell align="right">{row.net_price}</TableCell>
@@ -111,10 +124,36 @@ import {loadOrderUser, loadSearchOrderUser, orderProductUser } from '../../store
                       color="primary"
                       id={row.id}
                       onClick={(e )=> this.loadEditPage(e, row.id)}
+                      style={{ marginBottom: 4 }}
                     >
                       Edit
                     </Button>
+
                   }
+
+                  {row.order_status && (row.order_status == 'approved' || row.order_status == 'rejected') ? null :
+
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      id={row.id}
+                      onClick={(e )=> this.deleteOrder(e, row.id)}
+                      style={{ marginBottom: 4 }}
+                    >
+                      Delete
+                    </Button>
+
+                  }
+
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    id={row.id}
+                    onClick={(e )=> this.loadEditHistoryPage(e, row.id)}
+                  >
+                    Edit History
+                  </Button>
+
                 </TableCell>
               </TableRow>
             ))
@@ -149,7 +188,7 @@ const mapDispatchToProps = (dispatch) =>{
   return{
     loadOrderUser: (page) => dispatch(loadOrderUser(page)),
     loadSearchOrderUser :(search_content, page) => dispatch(loadSearchOrderUser(search_content, page)),
-    orderProductUser: (id) => dispatch(orderProductUser(id))
+    deleteOrderUser: (id) => dispatch(deleteOrderUser(id))
   }   
 }
 

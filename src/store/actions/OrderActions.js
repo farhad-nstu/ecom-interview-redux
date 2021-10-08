@@ -3,7 +3,8 @@ import {
   loadSearchOrders,
   loadSingleData,
   editSingleData,
-  orderProduct
+  loadEditOrders,
+  deleteOrder
 } from '../services/OrderService';
 
 export const loadOrderUser = (page) => {
@@ -53,16 +54,25 @@ export const updateOrderUser = (credentials, id) => {
   }
 }
 
-export const orderProductUser = (credentials, id) => {
+export const loadEditHistoryUser = (page, id) => {
   return (dispatch) => {
-    dispatch({type:'RESTART_ADD_UPDATE_RESPONSE'});
-    dispatch({type:'LOADING'});
-
-    orderProduct(credentials, id).then((res) => {
-      dispatch({type:'ORDERED_SUCCESSFULLY', res})
+    loadEditOrders(page, id).then((res) => {
+      dispatch({type:'LOAD_EDIT_ORDERS', res});
     },
     error => {
-      dispatch({type:'ORDER_ERROR', error});
+      dispatch({type:'FETCH_EDIT_ORDER_ERROR', error})
+    })
+  }
+}
+
+export const deleteOrderUser = (id) => {
+  return (dispatch) => {
+    deleteOrder(id).then((res) => {
+      res.id = id;
+      dispatch({type:'ORDER_DELETE_SUCCESSFULLY', res})
+    },
+    error => {
+      dispatch({type:'ORDER_DELETE_ERROR', error});
     })
   }
 }

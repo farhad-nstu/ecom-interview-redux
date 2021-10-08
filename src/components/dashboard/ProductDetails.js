@@ -98,9 +98,12 @@ class ProductDetails extends Component {
                 <option>Outside Dhaka</option>
               </select>
 
-              <button style={{margin: 10}} className="btn btn-primary" type="submit" color="primary" >
-                Confirm Order
-              </button>
+              {this.state.quantity ? 
+                <button style={{margin: 10}} className="btn btn-primary" type="submit" color="primary" >
+                  Confirm Order
+                </button>
+                : ''
+              }
 
               <br/>
 

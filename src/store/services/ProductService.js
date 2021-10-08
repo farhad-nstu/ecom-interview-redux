@@ -1,24 +1,5 @@
 import HttpService from './HttpService';
 
-
-export const addNewContact = (credentials) =>{
-    const http = new HttpService();
-    // console.log(HttpService);
-    let newContact = "user/contact/add";
-    credentials.token = localStorage.getItem('user');
-    console.log(credentials)
-    return http.postData(credentials,newContact).then((data)=>{
-         console.log(data)
-        console.log(JSON.stringify(data));
-        return data;
-    }).catch((error)=> {console.log(error)
-        return error; 
-         });
-}
- 
-
-//contact/get-all/{token}/{pagination?}
-//this function loads paginated contacts
 export const loadProducts = (page) => {
   let token = localStorage.getItem('user');
   let pager = 2;
@@ -68,22 +49,6 @@ export const loadSingleData = (id) => {
       return error
     })
   }
-}
-
-export const editSingleData = (data,id) =>
-{
-    if(id==""){
-
-    }else
-    {
-      const http = new HttpService();
-let editDataUrl = "user/contact/update/"+id;
-return http.postData(data,editDataUrl).then((data)=>{
-    return data;
-}).catch((error)=> {console.log(error)
-    return error; 
-     });
-}
 }
 
 export const orderProduct = (data, id) => {

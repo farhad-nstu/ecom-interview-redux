@@ -83,3 +83,37 @@ export const orderProduct = (data, id) => {
   }
 
 }
+
+export const loadEditOrders = (page, id) => {
+  // let token = localStorage.getItem('user');
+  let pager = 2;
+  let ordersDataUrl; 
+  if(page == "") {
+    ordersDataUrl = "user/edit-orders/"+id+"/"+pager; 
+  } else {
+    ordersDataUrl = "user/edit-orders/"+id+"/"+pager+"?page="+page;
+  }
+  
+  const http = new HttpService();
+  return http.getData(ordersDataUrl).then((data) => {
+    return data
+  }).catch((error)=>{
+    return error
+  })  
+}
+
+export const deleteOrder = (id) => {
+  const data = {};
+
+  if(id == "") {
+
+  } else {
+    const http = new HttpService();
+    let deleteUrl = "user/delete-order/"+id;
+    return http.postData(data, deleteUrl).then((data) => {
+      return data;
+    }).catch((error) => {
+      return error; 
+    });
+  }
+}

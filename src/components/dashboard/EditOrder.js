@@ -32,7 +32,7 @@ class ProductDetails extends Component {
       this.setState({
         name: singleData.data.name,
         quantity: singleData.data.quantity,
-        price: singleData.data.price, 
+        price: singleData.data.product_price, 
         picture: singleData.data.picture, 
         description: singleData.data.description,
         product_quantity: singleData.data.product_quantity,

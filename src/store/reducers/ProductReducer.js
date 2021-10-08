@@ -1,6 +1,5 @@
 const initState = {
   productResponse:null,
-  contactMessage:null,
   loadProducts:null,
   loadSingleProduct:null
 };
@@ -68,18 +67,6 @@ const ProductReducer = (state = initState, action) => {
         ...state,
         loadSingleProduct:action.error
       }
-                          case 'UPDATE_CONTACT_SUCCESS':
-                              console.log(action);
-                              return{
-                                  ...state,
-                                  productResponse: action.res.message
-                               }
-                  
-                             case 'UPDATE_CONTACT_CODE_ERROR':
-                          return {
-                              ...state,
-                              productResponse:action.error
-                          }
 
     case 'ORDERED_SUCCESSFULLY':
       return{

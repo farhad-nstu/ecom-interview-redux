@@ -27,7 +27,7 @@ export default function Header() {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <IconButton edge="start"  aria-label="menu">
+          <IconButton edge="start" aria-label="menu">
           <b>
               <Link to="/">Curious IT</Link>
           </b>

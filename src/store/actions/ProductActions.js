@@ -1,27 +1,10 @@
 import {
-  addNewContact,
   loadProducts,
   loadSearchProducts,
-  loadSingleData
-  ,editSingleData,
+  loadSingleData,
+  editSingleData,
   orderProduct
 } from '../services/ProductService';
-
-export const addContactUser = (credentials) =>{
-    return (dispatch) =>{
-        dispatch({type:'RESTART_ADD_UPDATE_RESPONSE'});
-        dispatch({type:'LOADING'});
-       addNewContact(credentials).then((res)=>{
-            console.log(res);
-                dispatch({type:'NEW_CONTACT_SUCCESS',res})
-        },
-        error=>{
-            dispatch({type:'NEW_CONTACT_CODE_ERROR',error});
-        }
-        
-        )
-    }
-} 
 
 export const loadProductUser = (page) => {
   return (dispatch) => {
@@ -54,22 +37,6 @@ export const loadSingleDataUser = (id) => {
       dispatch({type:'FETCH_SINGLE_DATA_ERROR', error})
     })
   }
-}
-
-export const editContactUser = (credentials,id) =>{
-    return (dispatch) =>{
-        dispatch({type:'RESTART_ADD_UPDATE_RESPONSE'});
-        dispatch({type:'LOADING'});
-      editSingleData(credentials,id).then((res)=>{
-            console.log(res);
-                dispatch({type:'UPDATE_CONTACT_SUCCESS',res})
-        },
-        error=>{
-            dispatch({type:'UPDATE_CONTACT_CODE_ERROR',error});
-        }
-        
-        )
-    }
 }
 
 export const orderProductUser = (credentials, id) => {
